@@ -5,6 +5,7 @@ resource "aws_instance" "web" {
   key_name = var.sj_key_pair
   depends_on  = [aws_nat_gateway.nat, aws_subnet.private_subnet, aws_security_group.allow_http]
   security_groups = [aws_security_group.allow_http.id]
+  #would need to use vpc_security_group_ids else ec2 gets recreated with each apply.
   user_data =  file("install_http.sh")
   subnet_id     = element(aws_subnet.private_subnet.*.id, count.index)
   tags = {

@@ -3,7 +3,7 @@ resource "aws_lb" "web_servers" {
   name               = format("%s-alb", var.environment)
   internal           = false
   load_balancer_type = "application"
-  #security_groups    = [aws_security_group.default.id]
+  security_groups    = [aws_security_group.default-dev.id]
   subnets            = aws_subnet.public_subnet.*.id
   enable_http2       = false
   enable_deletion_protection = true

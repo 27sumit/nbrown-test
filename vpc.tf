@@ -102,7 +102,7 @@ resource "aws_route_table_association" "private" {
   subnet_id      = element(aws_subnet.private_subnet.*.id, count.index)
   route_table_id = aws_route_table.private.id
 }
-/*
+
 # VPC's Default Security Group
 resource "aws_security_group" "default-dev" {
   name        = "${var.environment}-default-sg"
@@ -113,17 +113,18 @@ resource "aws_security_group" "default-dev" {
     from_port = "0"
     to_port   = "0"
     protocol  = "-1"
-    self      = true
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
   }
 
   egress {
     from_port = "0"
     to_port   = "0"
     protocol  = "-1"
-    self      = "true"
+    cidr_blocks      = ["0.0.0.0/0"]
+    ipv6_cidr_blocks = ["::/0"]
   }
   tags = {
     Environment = var.environment
   }
 }
-*/
