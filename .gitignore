@@ -1,0 +1,4 @@
+*.pem
+backend-resource/terraform.*
+backend-resource/.terraform.lock.hcl
+backend-resource/.terraform
