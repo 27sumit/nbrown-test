@@ -34,13 +34,6 @@ resource "aws_lb_listener" "front_end" {
   }
 }
 
-/*
-# Find the target group
-data "aws_lb_target_group" "web_servers" {
-  name = "sharepoint-web-servers-tg"
-}
-*/
-
 # Attach ec2 instances on private subnets to the target group on port 80
 resource "aws_lb_target_group_attachment" "web_tga" {
   target_group_arn = aws_lb_target_group.web_servers.arn
